@@ -1,3 +1,6 @@
+const BASIC_TIME = 500;
+const MASTER_TIME = 800;
+
 /**
  * @param preferences - target student focus
  * @param knowsProgramming - if student can do programming and know basics
@@ -9,6 +12,13 @@ module.exports = function getTimeForEducation(
     knowsProgramming = true,
     config = {family: 4}
     ) {
-      return 0;
+      let timePerWeek = config[focus];
+      let weekNumber = 0;
+      if (knowsProgramming) {
+        weekNumber = Math.ceil(MASTER_TIME/timePerWeek);
+      } else {
+        weekNumber = Math.ceil((MASTER_TIME+BASIC_TIME)/timePerWeek);
+      }
+      return weekNumber;
   };
   
